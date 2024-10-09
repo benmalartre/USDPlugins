@@ -1,4 +1,4 @@
-# Default build configurations for the USDPluginExamples project.
+# Default build configurations for the USDPlugins project.
 
 # By default, build for release.
 if(NOT CMAKE_BUILD_TYPE)

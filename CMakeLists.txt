@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.13)
 
 # Define project.
 project(
-    USDPluginExamples
-    VERSION 0.0.0
-    DESCRIPTION "A collection of example plugins for Pixar's USD (Universal Scene Description)."
+    USDPlugins
+    VERSION 1.0.0
+    DESCRIPTION "A collection of plugins for Pixar's USD (Universal Scene Description)."
     LANGUAGES CXX
 )
 
@@ -14,6 +14,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/packages
 )
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # Exposes build options (with default values) for this project.
 include(Options)
@@ -28,7 +30,7 @@ include(Packages)
 include(USDPluginTools)
 
 # Recurse into source tree.
-add_subdirectory(src)
+add_subdirectory(pxr)
 
 # Export targets and install package files.
 # This must come after source tree recursion as exporting targets

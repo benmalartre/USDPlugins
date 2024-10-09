@@ -1,4 +1,4 @@
-# Discovery of the dependencies of USDPluginExamples.
+# Discovery of the dependencies of USDPlugins.
 
 if (USD_ROOT)
 

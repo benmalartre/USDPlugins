@@ -8,7 +8,7 @@ include(GNUInstallDirs)
 # Exposed USD variable(s) for installation.
 # XXX: We can hide these if we provide a more convenient way to install the
 # root plugInfo.json(s) and __init__.py files.
-set(USD_PLUGIN_DIR "plugin")
+set(USD_PLUGIN_DIR "lib")
 set(USD_PYTHON_DIR "python")
 set(USD_PLUG_INFO_RESOURCES_DIR "resources")
 set(USD_PLUG_INFO_ROOT_DIR "usd")
