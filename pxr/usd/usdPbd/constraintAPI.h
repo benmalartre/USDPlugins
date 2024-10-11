@@ -70,7 +70,7 @@ public:
     /// UsdPbdConstraintAPI::Get(
     ///    prim.GetStage(),
     ///    prim.GetPath().AppendProperty(
-    ///        "constraint:name"));
+    ///        "pbd:name"));
     ///
     /// for a \em valid \p prim, but will not immediately throw an error for
     /// an invalid \p prim
@@ -117,7 +117,7 @@ public:
     /// schema at \p path on \p stage.  If no prim exists at \p path on
     /// \p stage, or if the prim at that path does not adhere to this schema,
     /// return an invalid schema object.  \p path must be of the format
-    /// <path>.constraint:name .
+    /// <path>.pbd:name .
     ///
     /// This is shorthand for the following:
     ///
@@ -221,25 +221,25 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // PBDCONSTRAINTENABLED 
+    // CONSTRAINTENABLED 
     // --------------------------------------------------------------------- //
     /// Determines if the PbdConstraintAPI is enabled.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `bool pbd:constraintEnabled = 1` |
+    /// | Declaration | `bool constraintEnabled = 1` |
     /// | C++ Type | bool |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Bool |
     USDPBD_API
-    UsdAttribute GetPbdConstraintEnabledAttr() const;
+    UsdAttribute GetConstraintEnabledAttr() const;
 
-    /// See GetPbdConstraintEnabledAttr(), and also 
+    /// See GetConstraintEnabledAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreatePbdConstraintEnabledAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateConstraintEnabledAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // --------------------------------------------------------------------- //
@@ -249,7 +249,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:stiffness = 0` |
+    /// | Declaration | `float stiffness = 10000` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
@@ -271,7 +271,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:damp = 0` |
+    /// | Declaration | `float damp = 0.2` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API

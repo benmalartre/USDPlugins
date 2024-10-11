@@ -58,17 +58,31 @@ _CreateSimulationEnabledAttr(UsdPbdBodyAPI &self,
 }
         
 static UsdAttribute
-_CreateMarginAttr(UsdPbdBodyAPI &self,
+_CreateRadiusAttr(UsdPbdBodyAPI &self,
                                       object defaultVal, bool writeSparsely) {
-    return self.CreateMarginAttr(
+    return self.CreateRadiusAttr(
         UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Float), writeSparsely);
 }
         
 static UsdAttribute
-_CreateFrictionAttr(UsdPbdBodyAPI &self,
+_CreateMassAttr(UsdPbdBodyAPI &self,
                                       object defaultVal, bool writeSparsely) {
-    return self.CreateFrictionAttr(
+    return self.CreateMassAttr(
         UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Float), writeSparsely);
+}
+        
+static UsdAttribute
+_CreateDampAttr(UsdPbdBodyAPI &self,
+                                      object defaultVal, bool writeSparsely) {
+    return self.CreateDampAttr(
+        UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Float), writeSparsely);
+}
+        
+static UsdAttribute
+_CreateVelocityAttr(UsdPbdBodyAPI &self,
+                                      object defaultVal, bool writeSparsely) {
+    return self.CreateVelocityAttr(
+        UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Vector3f), writeSparsely);
 }
 
 static std::string
@@ -141,17 +155,31 @@ void wrapUsdPbdBodyAPI()
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         
-        .def("GetMarginAttr",
-             &This::GetMarginAttr)
-        .def("CreateMarginAttr",
-             &_CreateMarginAttr,
+        .def("GetRadiusAttr",
+             &This::GetRadiusAttr)
+        .def("CreateRadiusAttr",
+             &_CreateRadiusAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         
-        .def("GetFrictionAttr",
-             &This::GetFrictionAttr)
-        .def("CreateFrictionAttr",
-             &_CreateFrictionAttr,
+        .def("GetMassAttr",
+             &This::GetMassAttr)
+        .def("CreateMassAttr",
+             &_CreateMassAttr,
+             (arg("defaultValue")=object(),
+              arg("writeSparsely")=false))
+        
+        .def("GetDampAttr",
+             &This::GetDampAttr)
+        .def("CreateDampAttr",
+             &_CreateDampAttr,
+             (arg("defaultValue")=object(),
+              arg("writeSparsely")=false))
+        
+        .def("GetVelocityAttr",
+             &This::GetVelocityAttr)
+        .def("CreateVelocityAttr",
+             &_CreateVelocityAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
 

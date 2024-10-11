@@ -8,6 +8,19 @@ class PbdSolver "PbdSolver" (
     doc = "Defines position based dynamics solver."
 )
 {
+    rel bodies (
+        doc = "Simulate Body List"
+    )
+    rel colliders (
+        doc = "Collider Object List"
+    )
+    vector3f gravity = (0, -9.8, 0) (
+        displayName = "Gravity"
+        doc = "Gravity vector in simulation solver space"
+    )
+    int iteration = 2 (
+        doc = "Num constraint solve iteration per substep"
+    )
     rel proxyPrim (
         doc = '''The proxyPrim relationship allows us to link a
         prim whose purpose is "render" to its (single target)
@@ -39,23 +52,13 @@ class PbdSolver "PbdSolver" (
         See for more detail about how 
         purpose is computed and used."""
     )
-    rel solver:bodies (
-        doc = "Simulate Body List"
-    )
-    rel solver:colliders (
-        doc = "Collider Object List"
-    )
-    vector3f solver:gravity = (0, -9.8, 0) (
-        displayName = "Gravity"
-        doc = "Gravity vector in simulation solver space"
-    )
-    int solver:iteration = 2 (
-        doc = "Num constraint solve iteration per substep"
-    )
-    float solver:sleepThreshold = 0.001 (
+    float sleepThreshold = 0.001 (
         doc = "Sleep threshold"
     )
-    int solver:subSteps = 8 (
+    int startFrame = 1 (
+        doc = "Simulation start frame"
+    )
+    int subSteps = 8 (
         doc = "Num substeps per frame"
     )
     token visibility = "inherited" (
@@ -84,17 +87,25 @@ class "PbdBodyAPI" (
     doc = "Applies soft body attributes to a deformable prim."
 )
 {
-    float pbd:mass = 0 (
-        displayName = "Friction"
+    float damp = 0.1 (
+        displayName = "Damp"
+        doc = "damp coefficient."
+    )
+    float mass = 1 (
+        displayName = "mass"
         doc = "friction coefficient."
     )
-    float pbd:radius = 0 (
-        displayName = "margin"
-        doc = "extend search radius by margin for safer collision detection."
+    float radius = 0.1 (
+        displayName = "radius"
+        doc = "particle radius used by collision detection."
     )
-    bool pbd:simulationEnabled = 1 (
+    bool simulationEnabled = 1 (
         displayName = "Simulation Enabled"
         doc = "Determines if the PbdBodyAPI is enabled."
+    )
+    vector3f velocity = (0, 0, 0) (
+        displayName = "Velocity"
+        doc = "Velocity vector in simulation solver space"
     )
 }
 
@@ -102,23 +113,23 @@ class "PbdCollisionAPI" (
     doc = "Applies position based dynamics collision attributes to a UsdGeomXformable prim."
 )
 {
-    bool pbd:collisionEnabled = 1 (
+    bool collisionEnabled = 1 (
         displayName = "Collision Enabled"
         doc = "Determines if the PbdCollisionAPI is enabled."
     )
-    float pbd:friction = 0 (
+    float friction = 0.2 (
         displayName = "Friction"
         doc = "friction coefficient."
     )
-    float pbd:margin = 0 (
+    float margin = 0.05 (
         displayName = "margin"
         doc = "extend search radius by margin for safer collision detection."
     )
-    float pbd:maxSeparationVelocity = 0 (
+    float maxSeparationVelocity = 25 (
         displayName = "Maximum Separation Velocity"
         doc = "Maximum separation velocity."
     )
-    float pbd:restitution = 0 (
+    float restitution = 0 (
         displayName = "Restitution"
         doc = "Restitution coefficient."
     )
@@ -128,15 +139,15 @@ class "PbdConstraintAPI" (
     doc = "Applies position based dynamics constraint attributes to a deformable prim(s)."
 )
 {
-    bool constraint:__INSTANCE_NAME__:pbd:constraintEnabled = 1 (
+    bool pbd:__INSTANCE_NAME__:constraintEnabled = 1 (
         displayName = "Constraint Enabled"
         doc = "Determines if the PbdConstraintAPI is enabled."
     )
-    float constraint:__INSTANCE_NAME__:pbd:damp = 0 (
+    float pbd:__INSTANCE_NAME__:damp = 0.2 (
         displayName = "Damp"
         doc = "Damp coefficient. Unitless."
     )
-    float constraint:__INSTANCE_NAME__:pbd:stiffness = 0 (
+    float pbd:__INSTANCE_NAME__:stiffness = 10000 (
         displayName = "Stiffness"
         doc = "stiffness coefficient. Unitless."
     )

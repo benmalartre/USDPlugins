@@ -42,7 +42,7 @@ TF_REGISTRY_FUNCTION(TfType)
 
 TF_DEFINE_PRIVATE_TOKENS(
     _schemaTokens,
-    (constraint)
+    (pbd)
 );
 
 /* virtual */
@@ -60,7 +60,7 @@ UsdPbdConstraintAPI::Get(const UsdStagePtr &stage, const SdfPath &path)
     }
     TfToken name;
     if (!IsPbdConstraintAPIPath(path, &name)) {
-        TF_CODING_ERROR("Invalid constraint path <%s>.", path.GetText());
+        TF_CODING_ERROR("Invalid pbd path <%s>.", path.GetText());
         return UsdPbdConstraintAPI();
     }
     return UsdPbdConstraintAPI(stage->GetPrimAtPath(path.GetPrimPath()), name);
@@ -93,11 +93,11 @@ UsdPbdConstraintAPI::IsSchemaPropertyBaseName(const TfToken &baseName)
 {
     static TfTokenVector attrsAndRels = {
         UsdSchemaRegistry::GetMultipleApplyNameTemplateBaseName(
-            UsdPbdTokens->constraint_MultipleApplyTemplate_PbdConstraintEnabled),
+            UsdPbdTokens->pbd_MultipleApplyTemplate_ConstraintEnabled),
         UsdSchemaRegistry::GetMultipleApplyNameTemplateBaseName(
-            UsdPbdTokens->constraint_MultipleApplyTemplate_PbdStiffness),
+            UsdPbdTokens->pbd_MultipleApplyTemplate_Stiffness),
         UsdSchemaRegistry::GetMultipleApplyNameTemplateBaseName(
-            UsdPbdTokens->constraint_MultipleApplyTemplate_PbdDamp),
+            UsdPbdTokens->pbd_MultipleApplyTemplate_Damp),
     };
 
     return find(attrsAndRels.begin(), attrsAndRels.end(), baseName)
@@ -125,9 +125,9 @@ UsdPbdConstraintAPI::IsPbdConstraintAPIPath(
     }
 
     if (tokens.size() >= 2
-        && tokens[0] == _schemaTokens->constraint) {
+        && tokens[0] == _schemaTokens->pbd) {
         *name = TfToken(propertyName.substr(
-            _schemaTokens->constraint.GetString().size() + 1));
+            _schemaTokens->pbd.GetString().size() + 1));
         return true;
     }
 
@@ -192,21 +192,21 @@ _GetNamespacedPropertyName(const TfToken instanceName, const TfToken propName)
 }
 
 UsdAttribute
-UsdPbdConstraintAPI::GetPbdConstraintEnabledAttr() const
+UsdPbdConstraintAPI::GetConstraintEnabledAttr() const
 {
     return GetPrim().GetAttribute(
         _GetNamespacedPropertyName(
             GetName(),
-            UsdPbdTokens->constraint_MultipleApplyTemplate_PbdConstraintEnabled));
+            UsdPbdTokens->pbd_MultipleApplyTemplate_ConstraintEnabled));
 }
 
 UsdAttribute
-UsdPbdConstraintAPI::CreatePbdConstraintEnabledAttr(VtValue const &defaultValue, bool writeSparsely) const
+UsdPbdConstraintAPI::CreateConstraintEnabledAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
     return UsdSchemaBase::_CreateAttr(
                        _GetNamespacedPropertyName(
                             GetName(),
-                           UsdPbdTokens->constraint_MultipleApplyTemplate_PbdConstraintEnabled),
+                           UsdPbdTokens->pbd_MultipleApplyTemplate_ConstraintEnabled),
                        SdfValueTypeNames->Bool,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -220,7 +220,7 @@ UsdPbdConstraintAPI::GetStiffnessAttr() const
     return GetPrim().GetAttribute(
         _GetNamespacedPropertyName(
             GetName(),
-            UsdPbdTokens->constraint_MultipleApplyTemplate_PbdStiffness));
+            UsdPbdTokens->pbd_MultipleApplyTemplate_Stiffness));
 }
 
 UsdAttribute
@@ -229,7 +229,7 @@ UsdPbdConstraintAPI::CreateStiffnessAttr(VtValue const &defaultValue, bool write
     return UsdSchemaBase::_CreateAttr(
                        _GetNamespacedPropertyName(
                             GetName(),
-                           UsdPbdTokens->constraint_MultipleApplyTemplate_PbdStiffness),
+                           UsdPbdTokens->pbd_MultipleApplyTemplate_Stiffness),
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -243,7 +243,7 @@ UsdPbdConstraintAPI::GetDampAttr() const
     return GetPrim().GetAttribute(
         _GetNamespacedPropertyName(
             GetName(),
-            UsdPbdTokens->constraint_MultipleApplyTemplate_PbdDamp));
+            UsdPbdTokens->pbd_MultipleApplyTemplate_Damp));
 }
 
 UsdAttribute
@@ -252,7 +252,7 @@ UsdPbdConstraintAPI::CreateDampAttr(VtValue const &defaultValue, bool writeSpars
     return UsdSchemaBase::_CreateAttr(
                        _GetNamespacedPropertyName(
                             GetName(),
-                           UsdPbdTokens->constraint_MultipleApplyTemplate_PbdDamp),
+                           UsdPbdTokens->pbd_MultipleApplyTemplate_Damp),
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -277,9 +277,9 @@ const TfTokenVector&
 UsdPbdConstraintAPI::GetSchemaAttributeNames(bool includeInherited)
 {
     static TfTokenVector localNames = {
-        UsdPbdTokens->constraint_MultipleApplyTemplate_PbdConstraintEnabled,
-        UsdPbdTokens->constraint_MultipleApplyTemplate_PbdStiffness,
-        UsdPbdTokens->constraint_MultipleApplyTemplate_PbdDamp,
+        UsdPbdTokens->pbd_MultipleApplyTemplate_ConstraintEnabled,
+        UsdPbdTokens->pbd_MultipleApplyTemplate_Stiffness,
+        UsdPbdTokens->pbd_MultipleApplyTemplate_Damp,
     };
     static TfTokenVector allNames =
         _ConcatenateAttributeNames(

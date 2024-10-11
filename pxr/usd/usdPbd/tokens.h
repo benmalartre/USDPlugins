@@ -58,86 +58,94 @@ PXR_NAMESPACE_OPEN_SCOPE
 /// Use UsdPbdTokens like so:
 ///
 /// \code
-///     gprim.GetMyTokenValuedAttr().Set(UsdPbdTokens->colliders);
+///     gprim.GetMyTokenValuedAttr().Set(UsdPbdTokens->bodies);
 /// \endcode
 struct UsdPbdTokensType {
     USDPBD_API UsdPbdTokensType();
+    /// \brief "bodies"
+    /// 
+    /// UsdPbdSolver
+    const TfToken bodies;
     /// \brief "colliders"
     /// 
-    ///  This token represents the collection name to use with UsdCollectionAPI to represent collision objects for the solver 
+    /// UsdPbdSolver,  This token represents the collection name to use with UsdCollectionAPI to represent collision objects for the solver 
     const TfToken colliders;
-    /// \brief "constraint"
+    /// \brief "collisionEnabled"
+    /// 
+    /// UsdPbdCollisionAPI
+    const TfToken collisionEnabled;
+    /// \brief "damp"
+    /// 
+    /// UsdPbdBodyAPI
+    const TfToken damp;
+    /// \brief "friction"
+    /// 
+    /// UsdPbdCollisionAPI
+    const TfToken friction;
+    /// \brief "gravity"
+    /// 
+    /// UsdPbdSolver
+    const TfToken gravity;
+    /// \brief "iteration"
+    /// 
+    /// UsdPbdSolver
+    const TfToken iteration;
+    /// \brief "margin"
+    /// 
+    /// UsdPbdCollisionAPI
+    const TfToken margin;
+    /// \brief "mass"
+    /// 
+    /// UsdPbdBodyAPI
+    const TfToken mass;
+    /// \brief "maxSeparationVelocity"
+    /// 
+    /// UsdPbdCollisionAPI
+    const TfToken maxSeparationVelocity;
+    /// \brief "pbd"
     /// 
     /// Property namespace prefix for the UsdPbdConstraintAPI schema.
-    const TfToken constraint;
-    /// \brief "constraint:__INSTANCE_NAME__:pbd:constraintEnabled"
+    const TfToken pbd;
+    /// \brief "pbd:__INSTANCE_NAME__:constraintEnabled"
     /// 
     /// UsdPbdConstraintAPI
-    const TfToken constraint_MultipleApplyTemplate_PbdConstraintEnabled;
-    /// \brief "constraint:__INSTANCE_NAME__:pbd:damp"
+    const TfToken pbd_MultipleApplyTemplate_ConstraintEnabled;
+    /// \brief "pbd:__INSTANCE_NAME__:damp"
     /// 
     /// UsdPbdConstraintAPI
-    const TfToken constraint_MultipleApplyTemplate_PbdDamp;
-    /// \brief "constraint:__INSTANCE_NAME__:pbd:stiffness"
+    const TfToken pbd_MultipleApplyTemplate_Damp;
+    /// \brief "pbd:__INSTANCE_NAME__:stiffness"
     /// 
     /// UsdPbdConstraintAPI
-    const TfToken constraint_MultipleApplyTemplate_PbdStiffness;
-    /// \brief "pbd:collisionEnabled"
-    /// 
-    /// UsdPbdCollisionAPI
-    const TfToken pbdCollisionEnabled;
-    /// \brief "pbd:friction"
-    /// 
-    /// UsdPbdCollisionAPI
-    const TfToken pbdFriction;
-    /// \brief "pbd:margin"
-    /// 
-    /// UsdPbdCollisionAPI
-    const TfToken pbdMargin;
-    /// \brief "pbd:mass"
+    const TfToken pbd_MultipleApplyTemplate_Stiffness;
+    /// \brief "radius"
     /// 
     /// UsdPbdBodyAPI
-    const TfToken pbdMass;
-    /// \brief "pbd:maxSeparationVelocity"
+    const TfToken radius;
+    /// \brief "restitution"
     /// 
     /// UsdPbdCollisionAPI
-    const TfToken pbdMaxSeparationVelocity;
-    /// \brief "pbd:radius"
+    const TfToken restitution;
+    /// \brief "simulationEnabled"
     /// 
     /// UsdPbdBodyAPI
-    const TfToken pbdRadius;
-    /// \brief "pbd:restitution"
+    const TfToken simulationEnabled;
+    /// \brief "sleepThreshold"
     /// 
-    /// UsdPbdCollisionAPI
-    const TfToken pbdRestitution;
-    /// \brief "pbd:simulationEnabled"
+    /// UsdPbdSolver
+    const TfToken sleepThreshold;
+    /// \brief "startFrame"
+    /// 
+    /// UsdPbdSolver
+    const TfToken startFrame;
+    /// \brief "subSteps"
+    /// 
+    /// UsdPbdSolver
+    const TfToken subSteps;
+    /// \brief "velocity"
     /// 
     /// UsdPbdBodyAPI
-    const TfToken pbdSimulationEnabled;
-    /// \brief "solver:bodies"
-    /// 
-    /// UsdPbdSolver
-    const TfToken solverBodies;
-    /// \brief "solver:colliders"
-    /// 
-    /// UsdPbdSolver
-    const TfToken solverColliders;
-    /// \brief "solver:gravity"
-    /// 
-    /// UsdPbdSolver
-    const TfToken solverGravity;
-    /// \brief "solver:iteration"
-    /// 
-    /// UsdPbdSolver
-    const TfToken solverIteration;
-    /// \brief "solver:sleepThreshold"
-    /// 
-    /// UsdPbdSolver
-    const TfToken solverSleepThreshold;
-    /// \brief "solver:subSteps"
-    /// 
-    /// UsdPbdSolver
-    const TfToken solverSubSteps;
+    const TfToken velocity;
     /// \brief "PbdBodyAPI"
     /// 
     /// Schema identifer and family for UsdPbdBodyAPI

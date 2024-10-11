@@ -51,9 +51,9 @@ WRAP_CUSTOM;
 
         
 static UsdAttribute
-_CreatePbdConstraintEnabledAttr(UsdPbdConstraintAPI &self,
+_CreateConstraintEnabledAttr(UsdPbdConstraintAPI &self,
                                       object defaultVal, bool writeSparsely) {
-    return self.CreatePbdConstraintEnabledAttr(
+    return self.CreateConstraintEnabledAttr(
         UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Bool), writeSparsely);
 }
         
@@ -163,10 +163,10 @@ void wrapUsdPbdConstraintAPI()
         .def(!self)
 
         
-        .def("GetPbdConstraintEnabledAttr",
-             &This::GetPbdConstraintEnabledAttr)
-        .def("CreatePbdConstraintEnabledAttr",
-             &_CreatePbdConstraintEnabledAttr,
+        .def("GetConstraintEnabledAttr",
+             &This::GetConstraintEnabledAttr)
+        .def("CreateConstraintEnabledAttr",
+             &_CreateConstraintEnabledAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         

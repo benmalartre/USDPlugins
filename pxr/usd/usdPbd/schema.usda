@@ -36,19 +36,23 @@ class PbdSolver "PbdSolver" (
     prepend apiSchemas = ["CollectionAPI:colliders, CollectionAPI:bodies"]
 ) {
 
-  float solver:sleepThreshold = 0.001(
+  int startFrame = 1.0 (
+    doc = """Simulation start frame"""
+  )
+
+  float sleepThreshold = 0.001(
     doc = """Sleep threshold"""
   )
 
-  int solver:subSteps = 8(
+  int subSteps = 8(
     doc = """Num substeps per frame"""
   )
 
-  int solver:iteration = 2(
+  int iteration = 2(
     doc = """Num constraint solve iteration per substep"""
   )
 
-  vector3f solver:gravity = (0.0, -9.8, 0.0) (
+  vector3f gravity = (0.0, -9.8, 0.0) (
         customData = {
             string apiName = "gravity"
         }
@@ -56,14 +60,14 @@ class PbdSolver "PbdSolver" (
         doc = """Gravity vector in simulation solver space"""
     )
 
-  rel solver:bodies (
+  rel bodies (
     customData = {
             string apiName = "bodies"
         } 
       doc = """Simulate Body List"""
   )
 
-  rel solver:colliders (
+  rel colliders (
     customData = {
             string apiName = "colliders"
         }       
@@ -81,7 +85,7 @@ class "PbdBodyAPI"
   inherits = </APISchemaBase>
 )
 {
-  bool pbd:simulationEnabled = 1 (
+  bool simulationEnabled = 1 (
     customData = {
       string apiName = "simulationEnabled"
     }
@@ -89,21 +93,37 @@ class "PbdBodyAPI"
     doc = "Determines if the PbdBodyAPI is enabled."
   )
 
-  float pbd:radius = 0.0 (
+  float radius = 0.1 (
     customData = {
-      string apiName = "margin"
+      string apiName = "radius"
     }
-    displayName = "margin"
-    doc = """extend search radius by margin for safer collision detection."""
+    displayName = "radius"
+    doc = """particle radius used by collision detection."""
   )
 
-  float pbd:mass = 0.0 (
+  float mass = 1.0 (
     customData = {
-      string apiName = "friction"
+      string apiName = "mass"
     }
-    displayName = "Friction"
+    displayName = "mass"
     doc = """friction coefficient."""
   )
+
+  float damp = 0.1 (
+    customData = {
+      string apiName = "damp"
+    }
+    displayName = "Damp"
+    doc = """damp coefficient."""
+  )
+
+  vector3f velocity = (0.0, 0.0, 0.0) (
+        customData = {
+            string apiName = "velocity"
+        }
+        displayName = "Velocity"
+        doc = """Velocity vector in simulation solver space"""
+    )
 }
 
 class "PbdCollisionAPI"
@@ -116,12 +136,12 @@ class "PbdCollisionAPI"
   inherits = </APISchemaBase>
 )
 {
-  bool pbd:collisionEnabled = 1 (
+  bool collisionEnabled = 1 (
     displayName = "Collision Enabled"
     doc = "Determines if the PbdCollisionAPI is enabled."
   )
 
-  float pbd:margin = 0.0 (
+  float margin = 0.05 (
     customData = {
       string apiName = "margin"
     }
@@ -129,7 +149,7 @@ class "PbdCollisionAPI"
     doc = """extend search radius by margin for safer collision detection."""
   )
 
-  float pbd:friction = 0.0 (
+  float friction = 0.2 (
     customData = {
       string apiName = "friction"
     }
@@ -137,7 +157,7 @@ class "PbdCollisionAPI"
     doc = """friction coefficient."""
   )
 
-  float pbd:restitution = 0.0 (
+  float restitution = 0.0 (
     customData = {
       string apiName = "restitution"
     }
@@ -145,7 +165,7 @@ class "PbdCollisionAPI"
     doc = """Restitution coefficient."""
   )
 
-  float pbd:maxSeparationVelocity = 0.0 (
+  float maxSeparationVelocity = 25.0 (
     customData = {
       string apiName = "maxSeparationVelocity"
     }
@@ -159,7 +179,7 @@ class "PbdConstraintAPI"
   customData = {
       string className = "ConstraintAPI"
       token apiSchemaType = "multipleApply"
-      token propertyNamespacePrefix = "constraint"
+      token propertyNamespacePrefix = "pbd"
        string extraIncludes = """
           #include "pxr/usd/usd/prim.h" 
         """
@@ -170,12 +190,12 @@ class "PbdConstraintAPI"
   inherits = </APISchemaBase>
 )
 {
-  bool pbd:constraintEnabled = 1 (
+  bool constraintEnabled = 1 (
     displayName = "Constraint Enabled"
     doc = "Determines if the PbdConstraintAPI is enabled."
   )
 
-  float pbd:stiffness = 0.0 (
+  float stiffness = 10000.0 (
     customData = {
       string apiName = "stiffness"
     }
@@ -183,7 +203,7 @@ class "PbdConstraintAPI"
     doc = """stiffness coefficient. Unitless."""
   )
 
-  float pbd:damp = 0.0 (
+  float damp = 0.2 (
     customData = {
       string apiName = "damp"
     }

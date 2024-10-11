@@ -103,15 +103,15 @@ UsdPbdCollisionAPI::_GetTfType() const
 }
 
 UsdAttribute
-UsdPbdCollisionAPI::GetPbdCollisionEnabledAttr() const
+UsdPbdCollisionAPI::GetCollisionEnabledAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdCollisionEnabled);
+    return GetPrim().GetAttribute(UsdPbdTokens->collisionEnabled);
 }
 
 UsdAttribute
-UsdPbdCollisionAPI::CreatePbdCollisionEnabledAttr(VtValue const &defaultValue, bool writeSparsely) const
+UsdPbdCollisionAPI::CreateCollisionEnabledAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdCollisionEnabled,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->collisionEnabled,
                        SdfValueTypeNames->Bool,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -122,13 +122,13 @@ UsdPbdCollisionAPI::CreatePbdCollisionEnabledAttr(VtValue const &defaultValue, b
 UsdAttribute
 UsdPbdCollisionAPI::GetMarginAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdMargin);
+    return GetPrim().GetAttribute(UsdPbdTokens->margin);
 }
 
 UsdAttribute
 UsdPbdCollisionAPI::CreateMarginAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdMargin,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->margin,
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -139,13 +139,13 @@ UsdPbdCollisionAPI::CreateMarginAttr(VtValue const &defaultValue, bool writeSpar
 UsdAttribute
 UsdPbdCollisionAPI::GetFrictionAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdFriction);
+    return GetPrim().GetAttribute(UsdPbdTokens->friction);
 }
 
 UsdAttribute
 UsdPbdCollisionAPI::CreateFrictionAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdFriction,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->friction,
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -156,13 +156,13 @@ UsdPbdCollisionAPI::CreateFrictionAttr(VtValue const &defaultValue, bool writeSp
 UsdAttribute
 UsdPbdCollisionAPI::GetRestitutionAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdRestitution);
+    return GetPrim().GetAttribute(UsdPbdTokens->restitution);
 }
 
 UsdAttribute
 UsdPbdCollisionAPI::CreateRestitutionAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdRestitution,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->restitution,
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -173,13 +173,13 @@ UsdPbdCollisionAPI::CreateRestitutionAttr(VtValue const &defaultValue, bool writ
 UsdAttribute
 UsdPbdCollisionAPI::GetMaxSeparationVelocityAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdMaxSeparationVelocity);
+    return GetPrim().GetAttribute(UsdPbdTokens->maxSeparationVelocity);
 }
 
 UsdAttribute
 UsdPbdCollisionAPI::CreateMaxSeparationVelocityAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdMaxSeparationVelocity,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->maxSeparationVelocity,
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -204,11 +204,11 @@ const TfTokenVector&
 UsdPbdCollisionAPI::GetSchemaAttributeNames(bool includeInherited)
 {
     static TfTokenVector localNames = {
-        UsdPbdTokens->pbdCollisionEnabled,
-        UsdPbdTokens->pbdMargin,
-        UsdPbdTokens->pbdFriction,
-        UsdPbdTokens->pbdRestitution,
-        UsdPbdTokens->pbdMaxSeparationVelocity,
+        UsdPbdTokens->collisionEnabled,
+        UsdPbdTokens->margin,
+        UsdPbdTokens->friction,
+        UsdPbdTokens->restitution,
+        UsdPbdTokens->maxSeparationVelocity,
     };
     static TfTokenVector allNames =
         _ConcatenateAttributeNames(

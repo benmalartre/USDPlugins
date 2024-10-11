@@ -153,69 +153,91 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // SOLVERSLEEPTHRESHOLD 
+    // STARTFRAME 
+    // --------------------------------------------------------------------- //
+    /// Simulation start frame
+    ///
+    /// | ||
+    /// | -- | -- |
+    /// | Declaration | `int startFrame = 1` |
+    /// | C++ Type | int |
+    /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Int |
+    USDPBD_API
+    UsdAttribute GetStartFrameAttr() const;
+
+    /// See GetStartFrameAttr(), and also 
+    /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
+    /// If specified, author \p defaultValue as the attribute's default,
+    /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
+    /// the default for \p writeSparsely is \c false.
+    USDPBD_API
+    UsdAttribute CreateStartFrameAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+
+public:
+    // --------------------------------------------------------------------- //
+    // SLEEPTHRESHOLD 
     // --------------------------------------------------------------------- //
     /// Sleep threshold
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float solver:sleepThreshold = 0.001` |
+    /// | Declaration | `float sleepThreshold = 0.001` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
-    UsdAttribute GetSolverSleepThresholdAttr() const;
+    UsdAttribute GetSleepThresholdAttr() const;
 
-    /// See GetSolverSleepThresholdAttr(), and also 
+    /// See GetSleepThresholdAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreateSolverSleepThresholdAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateSleepThresholdAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // --------------------------------------------------------------------- //
-    // SOLVERSUBSTEPS 
+    // SUBSTEPS 
     // --------------------------------------------------------------------- //
     /// Num substeps per frame
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `int solver:subSteps = 8` |
+    /// | Declaration | `int subSteps = 8` |
     /// | C++ Type | int |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Int |
     USDPBD_API
-    UsdAttribute GetSolverSubStepsAttr() const;
+    UsdAttribute GetSubStepsAttr() const;
 
-    /// See GetSolverSubStepsAttr(), and also 
+    /// See GetSubStepsAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreateSolverSubStepsAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateSubStepsAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // --------------------------------------------------------------------- //
-    // SOLVERITERATION 
+    // ITERATION 
     // --------------------------------------------------------------------- //
     /// Num constraint solve iteration per substep
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `int solver:iteration = 2` |
+    /// | Declaration | `int iteration = 2` |
     /// | C++ Type | int |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Int |
     USDPBD_API
-    UsdAttribute GetSolverIterationAttr() const;
+    UsdAttribute GetIterationAttr() const;
 
-    /// See GetSolverIterationAttr(), and also 
+    /// See GetIterationAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreateSolverIterationAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateIterationAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // --------------------------------------------------------------------- //
@@ -225,7 +247,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `vector3f solver:gravity = (0, -9.8, 0)` |
+    /// | Declaration | `vector3f gravity = (0, -9.8, 0)` |
     /// | C++ Type | GfVec3f |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Vector3f |
     USDPBD_API

@@ -170,7 +170,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `bool pbd:simulationEnabled = 1` |
+    /// | Declaration | `bool simulationEnabled = 1` |
     /// | C++ Type | bool |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Bool |
     USDPBD_API
@@ -186,47 +186,91 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // MARGIN 
+    // RADIUS 
     // --------------------------------------------------------------------- //
-    /// extend search radius by margin for safer collision detection.
+    /// particle radius used by collision detection.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:radius = 0` |
+    /// | Declaration | `float radius = 0.1` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
-    UsdAttribute GetMarginAttr() const;
+    UsdAttribute GetRadiusAttr() const;
 
-    /// See GetMarginAttr(), and also 
+    /// See GetRadiusAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreateMarginAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateRadiusAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // --------------------------------------------------------------------- //
-    // FRICTION 
+    // MASS 
     // --------------------------------------------------------------------- //
     /// friction coefficient.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:mass = 0` |
+    /// | Declaration | `float mass = 1` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
-    UsdAttribute GetFrictionAttr() const;
+    UsdAttribute GetMassAttr() const;
 
-    /// See GetFrictionAttr(), and also 
+    /// See GetMassAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreateFrictionAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateMassAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+
+public:
+    // --------------------------------------------------------------------- //
+    // DAMP 
+    // --------------------------------------------------------------------- //
+    /// damp coefficient.
+    ///
+    /// | ||
+    /// | -- | -- |
+    /// | Declaration | `float damp = 0.1` |
+    /// | C++ Type | float |
+    /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
+    USDPBD_API
+    UsdAttribute GetDampAttr() const;
+
+    /// See GetDampAttr(), and also 
+    /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
+    /// If specified, author \p defaultValue as the attribute's default,
+    /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
+    /// the default for \p writeSparsely is \c false.
+    USDPBD_API
+    UsdAttribute CreateDampAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+
+public:
+    // --------------------------------------------------------------------- //
+    // VELOCITY 
+    // --------------------------------------------------------------------- //
+    /// Velocity vector in simulation solver space
+    ///
+    /// | ||
+    /// | -- | -- |
+    /// | Declaration | `vector3f velocity = (0, 0, 0)` |
+    /// | C++ Type | GfVec3f |
+    /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Vector3f |
+    USDPBD_API
+    UsdAttribute GetVelocityAttr() const;
+
+    /// See GetVelocityAttr(), and also 
+    /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
+    /// If specified, author \p defaultValue as the attribute's default,
+    /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
+    /// the default for \p writeSparsely is \c false.
+    USDPBD_API
+    UsdAttribute CreateVelocityAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // ===================================================================== //

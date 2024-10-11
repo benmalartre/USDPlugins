@@ -105,13 +105,13 @@ UsdPbdBodyAPI::_GetTfType() const
 UsdAttribute
 UsdPbdBodyAPI::GetSimulationEnabledAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdSimulationEnabled);
+    return GetPrim().GetAttribute(UsdPbdTokens->simulationEnabled);
 }
 
 UsdAttribute
 UsdPbdBodyAPI::CreateSimulationEnabledAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdSimulationEnabled,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->simulationEnabled,
                        SdfValueTypeNames->Bool,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -120,15 +120,15 @@ UsdPbdBodyAPI::CreateSimulationEnabledAttr(VtValue const &defaultValue, bool wri
 }
 
 UsdAttribute
-UsdPbdBodyAPI::GetMarginAttr() const
+UsdPbdBodyAPI::GetRadiusAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdRadius);
+    return GetPrim().GetAttribute(UsdPbdTokens->radius);
 }
 
 UsdAttribute
-UsdPbdBodyAPI::CreateMarginAttr(VtValue const &defaultValue, bool writeSparsely) const
+UsdPbdBodyAPI::CreateRadiusAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdRadius,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->radius,
                        SdfValueTypeNames->Float,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -137,16 +137,50 @@ UsdPbdBodyAPI::CreateMarginAttr(VtValue const &defaultValue, bool writeSparsely)
 }
 
 UsdAttribute
-UsdPbdBodyAPI::GetFrictionAttr() const
+UsdPbdBodyAPI::GetMassAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->pbdMass);
+    return GetPrim().GetAttribute(UsdPbdTokens->mass);
 }
 
 UsdAttribute
-UsdPbdBodyAPI::CreateFrictionAttr(VtValue const &defaultValue, bool writeSparsely) const
+UsdPbdBodyAPI::CreateMassAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->pbdMass,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->mass,
                        SdfValueTypeNames->Float,
+                       /* custom = */ false,
+                       SdfVariabilityVarying,
+                       defaultValue,
+                       writeSparsely);
+}
+
+UsdAttribute
+UsdPbdBodyAPI::GetDampAttr() const
+{
+    return GetPrim().GetAttribute(UsdPbdTokens->damp);
+}
+
+UsdAttribute
+UsdPbdBodyAPI::CreateDampAttr(VtValue const &defaultValue, bool writeSparsely) const
+{
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->damp,
+                       SdfValueTypeNames->Float,
+                       /* custom = */ false,
+                       SdfVariabilityVarying,
+                       defaultValue,
+                       writeSparsely);
+}
+
+UsdAttribute
+UsdPbdBodyAPI::GetVelocityAttr() const
+{
+    return GetPrim().GetAttribute(UsdPbdTokens->velocity);
+}
+
+UsdAttribute
+UsdPbdBodyAPI::CreateVelocityAttr(VtValue const &defaultValue, bool writeSparsely) const
+{
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->velocity,
+                       SdfValueTypeNames->Vector3f,
                        /* custom = */ false,
                        SdfVariabilityVarying,
                        defaultValue,
@@ -170,9 +204,11 @@ const TfTokenVector&
 UsdPbdBodyAPI::GetSchemaAttributeNames(bool includeInherited)
 {
     static TfTokenVector localNames = {
-        UsdPbdTokens->pbdSimulationEnabled,
-        UsdPbdTokens->pbdRadius,
-        UsdPbdTokens->pbdMass,
+        UsdPbdTokens->simulationEnabled,
+        UsdPbdTokens->radius,
+        UsdPbdTokens->mass,
+        UsdPbdTokens->damp,
+        UsdPbdTokens->velocity,
     };
     static TfTokenVector allNames =
         _ConcatenateAttributeNames(

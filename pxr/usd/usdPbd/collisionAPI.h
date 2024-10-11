@@ -164,25 +164,25 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // PBDCOLLISIONENABLED 
+    // COLLISIONENABLED 
     // --------------------------------------------------------------------- //
     /// Determines if the PbdCollisionAPI is enabled.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `bool pbd:collisionEnabled = 1` |
+    /// | Declaration | `bool collisionEnabled = 1` |
     /// | C++ Type | bool |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Bool |
     USDPBD_API
-    UsdAttribute GetPbdCollisionEnabledAttr() const;
+    UsdAttribute GetCollisionEnabledAttr() const;
 
-    /// See GetPbdCollisionEnabledAttr(), and also 
+    /// See GetCollisionEnabledAttr(), and also 
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
     /// the default for \p writeSparsely is \c false.
     USDPBD_API
-    UsdAttribute CreatePbdCollisionEnabledAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
+    UsdAttribute CreateCollisionEnabledAttr(VtValue const &defaultValue = VtValue(), bool writeSparsely=false) const;
 
 public:
     // --------------------------------------------------------------------- //
@@ -192,7 +192,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:margin = 0` |
+    /// | Declaration | `float margin = 0.05` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
@@ -214,7 +214,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:friction = 0` |
+    /// | Declaration | `float friction = 0.2` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
@@ -236,7 +236,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:restitution = 0` |
+    /// | Declaration | `float restitution = 0` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API
@@ -258,7 +258,7 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float pbd:maxSeparationVelocity = 0` |
+    /// | Declaration | `float maxSeparationVelocity = 25` |
     /// | C++ Type | float |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPBD_API

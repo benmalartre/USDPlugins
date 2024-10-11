@@ -50,23 +50,30 @@ WRAP_CUSTOM;
 
         
 static UsdAttribute
-_CreateSolverSleepThresholdAttr(UsdPbdSolver &self,
+_CreateStartFrameAttr(UsdPbdSolver &self,
                                       object defaultVal, bool writeSparsely) {
-    return self.CreateSolverSleepThresholdAttr(
-        UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Float), writeSparsely);
-}
-        
-static UsdAttribute
-_CreateSolverSubStepsAttr(UsdPbdSolver &self,
-                                      object defaultVal, bool writeSparsely) {
-    return self.CreateSolverSubStepsAttr(
+    return self.CreateStartFrameAttr(
         UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Int), writeSparsely);
 }
         
 static UsdAttribute
-_CreateSolverIterationAttr(UsdPbdSolver &self,
+_CreateSleepThresholdAttr(UsdPbdSolver &self,
                                       object defaultVal, bool writeSparsely) {
-    return self.CreateSolverIterationAttr(
+    return self.CreateSleepThresholdAttr(
+        UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Float), writeSparsely);
+}
+        
+static UsdAttribute
+_CreateSubStepsAttr(UsdPbdSolver &self,
+                                      object defaultVal, bool writeSparsely) {
+    return self.CreateSubStepsAttr(
+        UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Int), writeSparsely);
+}
+        
+static UsdAttribute
+_CreateIterationAttr(UsdPbdSolver &self,
+                                      object defaultVal, bool writeSparsely) {
+    return self.CreateIterationAttr(
         UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Int), writeSparsely);
 }
         
@@ -119,24 +126,31 @@ void wrapUsdPbdSolver()
         .def(!self)
 
         
-        .def("GetSolverSleepThresholdAttr",
-             &This::GetSolverSleepThresholdAttr)
-        .def("CreateSolverSleepThresholdAttr",
-             &_CreateSolverSleepThresholdAttr,
+        .def("GetStartFrameAttr",
+             &This::GetStartFrameAttr)
+        .def("CreateStartFrameAttr",
+             &_CreateStartFrameAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         
-        .def("GetSolverSubStepsAttr",
-             &This::GetSolverSubStepsAttr)
-        .def("CreateSolverSubStepsAttr",
-             &_CreateSolverSubStepsAttr,
+        .def("GetSleepThresholdAttr",
+             &This::GetSleepThresholdAttr)
+        .def("CreateSleepThresholdAttr",
+             &_CreateSleepThresholdAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         
-        .def("GetSolverIterationAttr",
-             &This::GetSolverIterationAttr)
-        .def("CreateSolverIterationAttr",
-             &_CreateSolverIterationAttr,
+        .def("GetSubStepsAttr",
+             &This::GetSubStepsAttr)
+        .def("CreateSubStepsAttr",
+             &_CreateSubStepsAttr,
+             (arg("defaultValue")=object(),
+              arg("writeSparsely")=false))
+        
+        .def("GetIterationAttr",
+             &This::GetIterationAttr)
+        .def("CreateIterationAttr",
+             &_CreateIterationAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         

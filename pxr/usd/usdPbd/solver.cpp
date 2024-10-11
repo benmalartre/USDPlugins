@@ -104,32 +104,15 @@ UsdPbdSolver::_GetTfType() const
 }
 
 UsdAttribute
-UsdPbdSolver::GetSolverSleepThresholdAttr() const
+UsdPbdSolver::GetStartFrameAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->solverSleepThreshold);
+    return GetPrim().GetAttribute(UsdPbdTokens->startFrame);
 }
 
 UsdAttribute
-UsdPbdSolver::CreateSolverSleepThresholdAttr(VtValue const &defaultValue, bool writeSparsely) const
+UsdPbdSolver::CreateStartFrameAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->solverSleepThreshold,
-                       SdfValueTypeNames->Float,
-                       /* custom = */ false,
-                       SdfVariabilityVarying,
-                       defaultValue,
-                       writeSparsely);
-}
-
-UsdAttribute
-UsdPbdSolver::GetSolverSubStepsAttr() const
-{
-    return GetPrim().GetAttribute(UsdPbdTokens->solverSubSteps);
-}
-
-UsdAttribute
-UsdPbdSolver::CreateSolverSubStepsAttr(VtValue const &defaultValue, bool writeSparsely) const
-{
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->solverSubSteps,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->startFrame,
                        SdfValueTypeNames->Int,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -138,15 +121,49 @@ UsdPbdSolver::CreateSolverSubStepsAttr(VtValue const &defaultValue, bool writeSp
 }
 
 UsdAttribute
-UsdPbdSolver::GetSolverIterationAttr() const
+UsdPbdSolver::GetSleepThresholdAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->solverIteration);
+    return GetPrim().GetAttribute(UsdPbdTokens->sleepThreshold);
 }
 
 UsdAttribute
-UsdPbdSolver::CreateSolverIterationAttr(VtValue const &defaultValue, bool writeSparsely) const
+UsdPbdSolver::CreateSleepThresholdAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->solverIteration,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->sleepThreshold,
+                       SdfValueTypeNames->Float,
+                       /* custom = */ false,
+                       SdfVariabilityVarying,
+                       defaultValue,
+                       writeSparsely);
+}
+
+UsdAttribute
+UsdPbdSolver::GetSubStepsAttr() const
+{
+    return GetPrim().GetAttribute(UsdPbdTokens->subSteps);
+}
+
+UsdAttribute
+UsdPbdSolver::CreateSubStepsAttr(VtValue const &defaultValue, bool writeSparsely) const
+{
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->subSteps,
+                       SdfValueTypeNames->Int,
+                       /* custom = */ false,
+                       SdfVariabilityVarying,
+                       defaultValue,
+                       writeSparsely);
+}
+
+UsdAttribute
+UsdPbdSolver::GetIterationAttr() const
+{
+    return GetPrim().GetAttribute(UsdPbdTokens->iteration);
+}
+
+UsdAttribute
+UsdPbdSolver::CreateIterationAttr(VtValue const &defaultValue, bool writeSparsely) const
+{
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->iteration,
                        SdfValueTypeNames->Int,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -157,13 +174,13 @@ UsdPbdSolver::CreateSolverIterationAttr(VtValue const &defaultValue, bool writeS
 UsdAttribute
 UsdPbdSolver::GetGravityAttr() const
 {
-    return GetPrim().GetAttribute(UsdPbdTokens->solverGravity);
+    return GetPrim().GetAttribute(UsdPbdTokens->gravity);
 }
 
 UsdAttribute
 UsdPbdSolver::CreateGravityAttr(VtValue const &defaultValue, bool writeSparsely) const
 {
-    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->solverGravity,
+    return UsdSchemaBase::_CreateAttr(UsdPbdTokens->gravity,
                        SdfValueTypeNames->Vector3f,
                        /* custom = */ false,
                        SdfVariabilityVarying,
@@ -174,26 +191,26 @@ UsdPbdSolver::CreateGravityAttr(VtValue const &defaultValue, bool writeSparsely)
 UsdRelationship
 UsdPbdSolver::GetBodiesRel() const
 {
-    return GetPrim().GetRelationship(UsdPbdTokens->solverBodies);
+    return GetPrim().GetRelationship(UsdPbdTokens->bodies);
 }
 
 UsdRelationship
 UsdPbdSolver::CreateBodiesRel() const
 {
-    return GetPrim().CreateRelationship(UsdPbdTokens->solverBodies,
+    return GetPrim().CreateRelationship(UsdPbdTokens->bodies,
                        /* custom = */ false);
 }
 
 UsdRelationship
 UsdPbdSolver::GetCollidersRel() const
 {
-    return GetPrim().GetRelationship(UsdPbdTokens->solverColliders);
+    return GetPrim().GetRelationship(UsdPbdTokens->colliders);
 }
 
 UsdRelationship
 UsdPbdSolver::CreateCollidersRel() const
 {
-    return GetPrim().CreateRelationship(UsdPbdTokens->solverColliders,
+    return GetPrim().CreateRelationship(UsdPbdTokens->colliders,
                        /* custom = */ false);
 }
 
@@ -214,10 +231,11 @@ const TfTokenVector&
 UsdPbdSolver::GetSchemaAttributeNames(bool includeInherited)
 {
     static TfTokenVector localNames = {
-        UsdPbdTokens->solverSleepThreshold,
-        UsdPbdTokens->solverSubSteps,
-        UsdPbdTokens->solverIteration,
-        UsdPbdTokens->solverGravity,
+        UsdPbdTokens->startFrame,
+        UsdPbdTokens->sleepThreshold,
+        UsdPbdTokens->subSteps,
+        UsdPbdTokens->iteration,
+        UsdPbdTokens->gravity,
     };
     static TfTokenVector allNames =
         _ConcatenateAttributeNames(

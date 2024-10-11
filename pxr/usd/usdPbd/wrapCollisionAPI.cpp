@@ -51,9 +51,9 @@ WRAP_CUSTOM;
 
         
 static UsdAttribute
-_CreatePbdCollisionEnabledAttr(UsdPbdCollisionAPI &self,
+_CreateCollisionEnabledAttr(UsdPbdCollisionAPI &self,
                                       object defaultVal, bool writeSparsely) {
-    return self.CreatePbdCollisionEnabledAttr(
+    return self.CreateCollisionEnabledAttr(
         UsdPythonToSdfType(defaultVal, SdfValueTypeNames->Bool), writeSparsely);
 }
         
@@ -148,10 +148,10 @@ void wrapUsdPbdCollisionAPI()
         .def(!self)
 
         
-        .def("GetPbdCollisionEnabledAttr",
-             &This::GetPbdCollisionEnabledAttr)
-        .def("CreatePbdCollisionEnabledAttr",
-             &_CreatePbdCollisionEnabledAttr,
+        .def("GetCollisionEnabledAttr",
+             &This::GetCollisionEnabledAttr)
+        .def("CreateCollisionEnabledAttr",
+             &_CreateCollisionEnabledAttr,
              (arg("defaultValue")=object(),
               arg("writeSparsely")=false))
         
