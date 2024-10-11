@@ -417,9 +417,15 @@ function(_usd_cpp_library NAME)
         # Install the plugin.
         # We do not need to export the target because plugins are _not_
         # meant to be built against.
+        #install(
+        #    TARGETS ${NAME}
+        #    LIBRARY DESTINATION ${LIBRARY_INSTALL_PREFIX}
+        #)
         install(
             TARGETS ${NAME}
+            EXPORT ${CMAKE_PROJECT_NAME}-targets
             LIBRARY DESTINATION ${LIBRARY_INSTALL_PREFIX}
+            RUNTIME DESTINATION ${LIBRARY_INSTALL_PREFIX}
         )
     else()
         # Setup SOVERSION & VERSION properties to create
@@ -626,7 +632,6 @@ function(_usd_install_resource_files NAME)
     set(RESOURCES_INSTALL_PREFIX ${LIBRARY_INSTALL_PREFIX}/${USD_PLUG_INFO_ROOT_DIR})
 
     foreach(resourceFile ${args_RESOURCE_FILES})
-
         # Apply string substitution to plugInfo.json, copy to binary dir.
         if (${resourceFile} STREQUAL "plugInfo.json")
             file(RELATIVE_PATH
